@@ -25,4 +25,9 @@ let state = {
     sidebar: {},
 };
 
+export const addPost = (postText) => {
+    const newPost = { id: 4, text: postText, likesCount: 0 };
+    state.profilePage.posts.push(newPost);
+};
+
 export default state;

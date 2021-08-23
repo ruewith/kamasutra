@@ -7,11 +7,12 @@ import Posts from "../posts";
 
 const Profile = (props) => {
     const { posts } = props.state;
+    const { addPost } = props;
 
     return (
         <div>
             <ProfileInfo />
-            <Posts posts={posts} />
+            <Posts posts={posts} addPost={addPost} />
         </div>
     );
 };
