@@ -3,6 +3,15 @@ import ReactDOM from "react-dom";
 
 import App from "./components/app";
 
-import state, { addPost } from "./redux/state";
+import store from "./redux/state";
 
-ReactDOM.render(<App state={state} addPost={addPost} />, document.getElementById("root"));
+let rerenderEntireTree = (state) => {
+    ReactDOM.render(
+        <App state={state} addPost={store.addPost.bind(store)} inputPostText={store.inputPostText.bind(store)} />,
+        document.getElementById("root")
+    );
+};
+
+rerenderEntireTree(store.getState());
+
+store.subscribe(rerenderEntireTree);
