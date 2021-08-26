@@ -10,7 +10,7 @@ import Messages from "../messages";
 
 const App = (props) => {
     const { profilePage, messagesPage } = props.state;
-    const { addPost, inputPostText } = props;
+    const { dispatch } = props;
 
     return (
         <Router>
@@ -21,9 +21,7 @@ const App = (props) => {
                     <Switch>
                         <Route
                             path="/profile"
-                            render={() => (
-                                <Profile profilePage={profilePage} addPost={addPost} inputPostText={inputPostText} />
-                            )}
+                            render={() => <Profile profilePage={profilePage} dispatch={dispatch} />}
                         />
                         <Route path="/messages" render={() => <Messages state={messagesPage} />} />
                     </Switch>

@@ -2,9 +2,11 @@ import React from "react";
 
 import styles from "./Posts.module.sass";
 
+import { updatePostTextAC, addPostAC } from "../../redux/state";
+
 import PostItem from "../post-item";
 
-const Posts = ({ profilePage, addPost, inputPostText }) => {
+const Posts = ({ profilePage, dispatch }) => {
     const { posts, newPostText } = profilePage;
     const postElements = posts.map((post) => <PostItem state={post} />);
 
@@ -15,13 +17,13 @@ const Posts = ({ profilePage, addPost, inputPostText }) => {
                 <div>
                     <textarea
                         onChange={(e) => {
-                            inputPostText(e.target.value);
+                            dispatch(updatePostTextAC(e.target.value));
                         }}
                         value={newPostText}
                     />
                 </div>
                 <div>
-                    <button onClick={addPost}>Add post</button> <button>Remove</button>
+                    <button onClick={() => dispatch(addPostAC())}>Add post</button> <button>Remove</button>
                 </div>
             </div>
             <div className={styles.postBlock}>{postElements}</div>

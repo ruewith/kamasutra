@@ -5,11 +5,11 @@ import styles from "./Profile.module.sass";
 import ProfileInfo from "../profile-info";
 import Posts from "../posts";
 
-const Profile = ({ profilePage, addPost, inputPostText }) => {
+const Profile = ({ profilePage, dispatch }) => {
     return (
         <div>
             <ProfileInfo />
-            <Posts profilePage={profilePage} addPost={addPost} inputPostText={inputPostText} />
+            <Posts profilePage={profilePage} dispatch={dispatch} />
         </div>
     );
 };
