@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Dialogs.module.sass";
 
-import { sendMessageAC, updateMessageTextAC } from "../../redux/state";
+import { sendMessageAC, updateMessageTextAC } from "../../redusers/state";
 
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
@@ -22,8 +22,9 @@ const Dialogs = ({ dialogsPage, dispatch }) => {
             <div className={styles.messageForm}>
                 <div>
                     <textarea
-                        onChange={(e) => {
-                            dispatch(updateMessageTextAC(e.target.value));
+                        placeholder="Send message"
+                        onChange={(event) => {
+                            dispatch(updateMessageTextAC(event.target.value));
                         }}
                         value={messageText}
                     />

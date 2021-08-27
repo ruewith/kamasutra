@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Posts.module.sass";
 
-import { updatePostTextAC, addPostAC } from "../../redux/state";
+import { updatePostTextAC, addPostAC } from "../../redusers/state";
 
 import PostItem from "../post-item";
 
@@ -16,8 +16,9 @@ const Posts = ({ profilePage, dispatch }) => {
             <div>
                 <div>
                     <textarea
-                        onChange={(e) => {
-                            dispatch(updatePostTextAC(e.target.value));
+                        placeholder="New post"
+                        onChange={(event) => {
+                            dispatch(updatePostTextAC(event.target.value));
                         }}
                         value={newPostText}
                     />

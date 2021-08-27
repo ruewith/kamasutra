@@ -1,3 +1,6 @@
+import dialogsReduser from "./dialogs-reduser";
+import profileReduser from "./profile-reduser";
+
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
 const SEND_MESSAGE = "SEND-MESSAGE";
@@ -11,7 +14,7 @@ let store = {
                 { id: 2, text: "Second post", likesCount: 11 },
                 { id: 3, text: "Third post", likesCount: 11 },
             ],
-            newPostText: "new post",
+            newPostText: "",
         },
         dialogsPage: {
             dialogs: [
@@ -28,7 +31,7 @@ let store = {
                 { id: 4, message: "Message 4" },
                 { id: 5, message: "Message 5" },
             ],
-            messageText: "message text",
+            messageText: "",
         },
         sidebar: {},
     },
@@ -42,26 +45,9 @@ let store = {
         return this._state;
     },
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            const newPost = { id: 4, text: this._state.profilePage.newPostText, likesCount: 0 };
-            this._state.profilePage.posts.push(newPost);
-            this._state.profilePage.newPostText = "";
-            this._callSubscriber(this._state);
-        }
-        if (action.type === UPDATE_POST_TEXT) {
-            this._state.profilePage.newPostText = action.text;
-            this._callSubscriber(this._state);
-        }
-        if (action.type === SEND_MESSAGE) {
-            const newMessage = { id: 7, message: this._state.dialogsPage.messageText };
-            this._state.dialogsPage.messages.push(newMessage);
-            this._state.dialogsPage.messageText = "";
-            this._callSubscriber(this._state);
-        }
-        if (action.type === UPDATE_MESSAGE_TEXT) {
-            this._state.dialogsPage.messageText = action.text;
-            this._callSubscriber(this._state);
-        }
+        this._state.profilePage = profileReduser(this._state.profilePage, action);
+        this._state.dialogsPage = dialogsReduser(this._state.dialogsPage, action);
+        this._callSubscriber(this._state);
     },
 };
 
