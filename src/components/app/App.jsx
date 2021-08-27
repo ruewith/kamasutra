@@ -6,10 +6,10 @@ import styles from "./App.module.sass";
 import Header from "../header";
 import Navbar from "../navbar";
 import Profile from "../profile";
-import Messages from "../messages";
+import Dialogs from "../dialogs";
 
 const App = (props) => {
-    const { profilePage, messagesPage } = props.state;
+    const { profilePage, dialogsPage } = props.state;
     const { dispatch } = props;
 
     return (
@@ -23,7 +23,7 @@ const App = (props) => {
                             path="/profile"
                             render={() => <Profile profilePage={profilePage} dispatch={dispatch} />}
                         />
-                        <Route path="/messages" render={() => <Messages state={messagesPage} />} />
+                        <Route path="/dialogs" render={() => <Dialogs state={dialogsPage} />} />
                     </Switch>
                 </div>
             </div>

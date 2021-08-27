@@ -1,11 +1,11 @@
 import React from "react";
 
-import styles from "./Messages.module.sass";
+import styles from "./Dialogs.module.sass";
 
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
 
-const Messages = (props) => {
+const Dialogs = (props) => {
     const { dialogs, messages } = props.state;
 
     let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
@@ -13,7 +13,7 @@ const Messages = (props) => {
 
     return (
         <div>
-            <div className={styles.messages}>
+            <div className={styles.dialogs}>
                 <div className={styles.dialogBlock}>{dialogElements}</div>
                 <div className={styles.messageBlock}>{messageElements}</div>
             </div>
@@ -21,4 +21,4 @@ const Messages = (props) => {
     );
 };
 
-export default Messages;
+export default Dialogs;

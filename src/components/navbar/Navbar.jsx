@@ -13,8 +13,8 @@ const Navbar = () => {
                     </NavLink>
                 </li>
                 <li>
-                    <NavLink to="/messages" activeClassName={styles.active}>
-                        Messages
+                    <NavLink to="/dialogs" activeClassName={styles.active}>
+                        Dialogs
                     </NavLink>
                 </li>
                 <li>
