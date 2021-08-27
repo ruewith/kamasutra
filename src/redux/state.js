@@ -1,5 +1,7 @@
 const ADD_POST = "ADD-POST";
 const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
+const SEND_MESSAGE = "SEND-MESSAGE";
+const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
 
 let store = {
     _state: {
@@ -9,7 +11,7 @@ let store = {
                 { id: 2, text: "Second post", likesCount: 11 },
                 { id: 3, text: "Third post", likesCount: 11 },
             ],
-            newPostText: "Some",
+            newPostText: "new post",
         },
         dialogsPage: {
             dialogs: [
@@ -26,6 +28,7 @@ let store = {
                 { id: 4, message: "Message 4" },
                 { id: 5, message: "Message 5" },
             ],
+            messageText: "message text",
         },
         sidebar: {},
     },
@@ -49,10 +52,22 @@ let store = {
             this._state.profilePage.newPostText = action.text;
             this._callSubscriber(this._state);
         }
+        if (action.type === SEND_MESSAGE) {
+            const newMessage = { id: 7, message: this._state.dialogsPage.messageText };
+            this._state.dialogsPage.messages.push(newMessage);
+            this._state.dialogsPage.messageText = "";
+            this._callSubscriber(this._state);
+        }
+        if (action.type === UPDATE_MESSAGE_TEXT) {
+            this._state.dialogsPage.messageText = action.text;
+            this._callSubscriber(this._state);
+        }
     },
 };
 
 export const addPostAC = () => ({ type: ADD_POST });
 export const updatePostTextAC = (text) => ({ type: UPDATE_POST_TEXT, text });
+export const sendMessageAC = () => ({ type: SEND_MESSAGE });
+export const updateMessageTextAC = (text) => ({ type: UPDATE_MESSAGE_TEXT, text });
 
 export default store;

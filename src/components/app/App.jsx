@@ -23,7 +23,10 @@ const App = (props) => {
                             path="/profile"
                             render={() => <Profile profilePage={profilePage} dispatch={dispatch} />}
                         />
-                        <Route path="/dialogs" render={() => <Dialogs state={dialogsPage} />} />
+                        <Route
+                            path="/dialogs"
+                            render={() => <Dialogs dialogsPage={dialogsPage} dispatch={dispatch} />}
+                        />
                     </Switch>
                 </div>
             </div>
