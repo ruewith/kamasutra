@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Posts.module.sass";
 
-import { updatePostTextAC, addPostAC } from "../../redusers/state";
+import { updatePostTextAC, addPostAC } from "../../redusers/profile-reduser";
 
 import PostItem from "../post-item";
 

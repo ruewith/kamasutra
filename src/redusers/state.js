@@ -1,11 +1,6 @@
 import dialogsReduser from "./dialogs-reduser";
 import profileReduser from "./profile-reduser";
 
-const ADD_POST = "ADD-POST";
-const UPDATE_POST_TEXT = "UPDATE-POST-TEXT";
-const SEND_MESSAGE = "SEND-MESSAGE";
-const UPDATE_MESSAGE_TEXT = "UPDATE-MESSAGE-TEXT";
-
 let store = {
     _state: {
         profilePage: {
@@ -50,10 +45,5 @@ let store = {
         this._callSubscriber(this._state);
     },
 };
-
-export const addPostAC = () => ({ type: ADD_POST });
-export const updatePostTextAC = (text) => ({ type: UPDATE_POST_TEXT, text });
-export const sendMessageAC = () => ({ type: SEND_MESSAGE });
-export const updateMessageTextAC = (text) => ({ type: UPDATE_MESSAGE_TEXT, text });
 
 export default store;

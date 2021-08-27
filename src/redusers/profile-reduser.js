@@ -18,3 +18,6 @@ const profileReduser = (state, action) => {
 };
 
 export default profileReduser;
+
+export const addPostAC = () => ({ type: ADD_POST });
+export const updatePostTextAC = (text) => ({ type: UPDATE_POST_TEXT, text });
