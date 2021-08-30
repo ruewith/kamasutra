@@ -6,11 +6,11 @@ import styles from "./App.module.sass";
 import Header from "../header";
 import Navbar from "../navbar";
 import Profile from "../profile";
-import Dialogs from "../dialogs";
+import { DialogsContainer } from "../dialogs";
 
 const App = (props) => {
-    const { profilePage, dialogsPage } = props.state;
-    const { dispatch } = props;
+    const { dialogsPage } = props.state;
+    const { dispatch, store } = props;
 
     return (
         <Router>
@@ -19,14 +19,8 @@ const App = (props) => {
                 <Navbar />
                 <div className={styles.content}>
                     <Switch>
-                        <Route
-                            path="/profile"
-                            render={() => <Profile profilePage={profilePage} dispatch={dispatch} />}
-                        />
-                        <Route
-                            path="/dialogs"
-                            render={() => <Dialogs dialogsPage={dialogsPage} dispatch={dispatch} />}
-                        />
+                        <Route path="/profile" render={() => <Profile store={store} />} />
+                        <Route path="/dialogs" render={() => <DialogsContainer store={store} />} />
                     </Switch>
                 </div>
             </div>

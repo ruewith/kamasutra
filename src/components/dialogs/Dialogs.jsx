@@ -7,9 +7,7 @@ import { sendMessageAC, updateMessageTextAC } from "../../redusers/dialogs-redus
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
 
-const Dialogs = ({ dialogsPage, dispatch }) => {
-    const { dialogs, messages, messageText } = dialogsPage;
-
+const Dialogs = ({ dialogs, messages, messageText, updateMessageText, sendMessage }) => {
     let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
     let messageElements = messages.map(({ message }) => <MessageItem message={message} />);
 
@@ -23,20 +21,12 @@ const Dialogs = ({ dialogsPage, dispatch }) => {
                 <div>
                     <textarea
                         placeholder="Send message"
-                        onChange={(event) => {
-                            dispatch(updateMessageTextAC(event.target.value));
-                        }}
+                        onChange={(event) => updateMessageText(event.target.value)}
                         value={messageText}
                     />
                 </div>
                 <div>
-                    <button
-                        onClick={() => {
-                            dispatch(sendMessageAC());
-                        }}
-                    >
-                        Send Message
-                    </button>
+                    <button onClick={sendMessage}>Send Message</button>
                 </div>
             </div>
         </div>

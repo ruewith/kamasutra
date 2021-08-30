@@ -2,12 +2,9 @@ import React from "react";
 
 import styles from "./Posts.module.sass";
 
-import { updatePostTextAC, addPostAC } from "../../redusers/profile-reduser";
-
 import PostItem from "../post-item";
 
-const Posts = ({ profilePage, dispatch }) => {
-    const { posts, newPostText } = profilePage;
+const Posts = ({ posts, postText, updatePostText, addPost }) => {
     const postElements = posts.map((post) => <PostItem state={post} />);
 
     return (
@@ -17,14 +14,12 @@ const Posts = ({ profilePage, dispatch }) => {
                 <div>
                     <textarea
                         placeholder="New post"
-                        onChange={(event) => {
-                            dispatch(updatePostTextAC(event.target.value));
-                        }}
-                        value={newPostText}
+                        onChange={(event) => updatePostText(event.target.value)}
+                        value={postText}
                     />
                 </div>
                 <div>
-                    <button onClick={() => dispatch(addPostAC())}>Add post</button> <button>Remove</button>
+                    <button onClick={addPost}>Add post</button> <button>Remove</button>
                 </div>
             </div>
             <div className={styles.postBlock}>{postElements}</div>

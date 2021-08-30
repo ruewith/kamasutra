@@ -3,13 +3,13 @@ import React from "react";
 import styles from "./Profile.module.sass";
 
 import ProfileInfo from "../profile-info";
-import Posts from "../posts";
+import Posts, { PostsContainer } from "../posts";
 
-const Profile = ({ profilePage, dispatch }) => {
+const Profile = ({ store }) => {
     return (
         <div>
             <ProfileInfo />
-            <Posts profilePage={profilePage} dispatch={dispatch} />
+            <PostsContainer store={store} />
         </div>
     );
 };
