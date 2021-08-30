@@ -5,11 +5,8 @@ import App from "./components/app";
 
 import store from "./redusers/store";
 
-let rerenderEntireTree = (state) => {
-    ReactDOM.render(
-        <App state={state} dispatch={store.dispatch.bind(store)} store={store} />,
-        document.getElementById("root")
-    );
+let rerenderEntireTree = () => {
+    ReactDOM.render(<App store={store} />, document.getElementById("root"));
 };
 
 rerenderEntireTree(store.getState());

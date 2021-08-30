@@ -8,10 +8,7 @@ import Navbar from "../navbar";
 import Profile from "../profile";
 import { DialogsContainer } from "../dialogs";
 
-const App = (props) => {
-    const { dialogsPage } = props.state;
-    const { dispatch, store } = props;
-
+const App = ({ store }) => {
     return (
         <Router>
             <div className={styles.app}>
