@@ -7,7 +7,8 @@ import { sendMessageAC, updateMessageTextAC } from "../../redusers/dialogs-redus
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
 
-const Dialogs = ({ dialogs, messages, messageText, updateMessageText, sendMessage }) => {
+const Dialogs = ({ dialogsPage, updateMessageText, sendMessage }) => {
+    const { dialogs, messages, messageText } = dialogsPage;
     let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
     let messageElements = messages.map(({ message }) => <MessageItem message={message} />);
 

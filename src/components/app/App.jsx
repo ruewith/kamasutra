@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route } from "react-router-dom";
 
 import styles from "./App.module.sass";
 
@@ -8,20 +8,18 @@ import Navbar from "../navbar";
 import Profile from "../profile";
 import { DialogsContainer } from "../dialogs";
 
-const App = ({ store }) => {
+const App = () => {
     return (
-        <Router>
-            <div className={styles.app}>
-                <Header />
-                <Navbar />
-                <div className={styles.content}>
-                    <Switch>
-                        <Route path="/profile" render={() => <Profile store={store} />} />
-                        <Route path="/dialogs" render={() => <DialogsContainer store={store} />} />
-                    </Switch>
-                </div>
+        <div className={styles.app}>
+            <Header />
+            <Navbar />
+            <div className={styles.content}>
+                <Switch>
+                    <Route path="/profile" render={() => <Profile />} />
+                    <Route path="/dialogs" render={() => <DialogsContainer />} />
+                </Switch>
             </div>
-        </Router>
+        </div>
     );
 };
 

@@ -22,13 +22,16 @@ const initialState = {
 const dialogsReduser = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_MESSAGE_TEXT:
-            state.messageText = action.text;
-            return state;
+            return {
+                ...state,
+                messageText: action.text,
+            };
         case SEND_MESSAGE:
-            const newMessage = { id: 7, message: state.messageText };
-            state.messages.push(newMessage);
-            state.messageText = "";
-            return state;
+            return {
+                ...state,
+                messages: [...state.messages, { id: 7, message: state.messageText }],
+                messageText: "",
+            };
         default:
             return state;
     }
