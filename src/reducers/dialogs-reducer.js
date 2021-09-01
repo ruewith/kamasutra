@@ -19,7 +19,7 @@ const initialState = {
     messageText: "",
 };
 
-const dialogsReduser = (state = initialState, action) => {
+const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
         case UPDATE_MESSAGE_TEXT:
             return {
@@ -37,7 +37,7 @@ const dialogsReduser = (state = initialState, action) => {
     }
 };
 
-export default dialogsReduser;
+export default dialogsReducer;
 
 export const sendMessageAC = () => ({ type: SEND_MESSAGE });
 export const updateMessageTextAC = (text) => ({ type: UPDATE_MESSAGE_TEXT, text });

@@ -7,6 +7,7 @@ import Header from "../header";
 import Navbar from "../navbar";
 import Profile from "../profile";
 import { DialogsContainer } from "../dialogs";
+import { UsersContainer } from "../users";
 
 const App = () => {
     return (
@@ -17,6 +18,7 @@ const App = () => {
                 <Switch>
                     <Route path="/profile" render={() => <Profile />} />
                     <Route path="/dialogs" render={() => <DialogsContainer />} />
+                    <Route path="/users" render={() => <UsersContainer />} />
                 </Switch>
             </div>
         </div>

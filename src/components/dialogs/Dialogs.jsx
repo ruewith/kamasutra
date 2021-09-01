@@ -2,8 +2,6 @@ import React from "react";
 
 import styles from "./Dialogs.module.sass";
 
-import { sendMessageAC, updateMessageTextAC } from "../../redusers/dialogs-reduser";
-
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
 
