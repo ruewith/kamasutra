@@ -1,16 +1,28 @@
 import React from "react";
+import * as axios from "axios";
 
 import styles from "./Users.module.sass";
+import userIcon from "../../assets/userIcon.png";
 
-const Users = ({ users, follow, unfollow }) => {
+const Users = ({ users, follow, unfollow, setUsers }) => {
+    if (users.length === 0) {
+        axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
+            setUsers(response.data.items);
+        });
+    }
+
     return (
         <div className={styles.usersList}>
             {users.map((user) => {
                 return (
-                    <div className={styles.usersListItem}>
+                    <div className={styles.usersItem}>
                         <div>
                             <p>
-                                <img src={user.avaUrl} alt="avatar" />
+                                <img
+                                    src={user.photos.small ? users.photos.small : userIcon}
+                                    alt="avatar"
+                                    className={styles.usersItemPhoto}
+                                />
                             </p>
                             <p>
                                 {user.followed ? (
@@ -21,12 +33,8 @@ const Users = ({ users, follow, unfollow }) => {
                             </p>
                         </div>
                         <div>
-                            <p>{user.fullName}</p>
+                            <p>{user.name}</p>
                             <p>{user.status}</p>
-                        </div>
-                        <div>
-                            <p>{user.location.country}</p>
-                            <p>{user.location.city}</p>
                         </div>
                     </div>
                 );

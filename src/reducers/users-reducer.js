@@ -3,32 +3,7 @@ const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 
 const initialState = {
-    users: [
-        {
-            id: 1,
-            avaUrl: "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png",
-            followed: false,
-            fullName: "Name1",
-            status: "status 1",
-            location: { city: "City 1", country: "Country 1" },
-        },
-        {
-            id: 2,
-            avaUrl: "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png",
-            followed: true,
-            fullName: "Name2",
-            status: "status 2",
-            location: { city: "City 2", country: "Country 2" },
-        },
-        {
-            id: 3,
-            avaUrl: "https://cdn.pixabay.com/photo/2020/07/14/13/07/icon-5404125_960_720.png",
-            followed: false,
-            fullName: "Name3",
-            status: "status 3",
-            location: { city: "City 3", country: "Country 3" },
-        },
-    ],
+    users: [],
 };
 
 const usersReducer = (state = initialState, action) => {
