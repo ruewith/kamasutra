@@ -5,21 +5,24 @@ import styles from "./Users.module.sass";
 import userIcon from "../../assets/userIcon.png";
 
 const Users = ({ users, follow, unfollow, setUsers }) => {
-    if (users.length === 0) {
-        axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
-            setUsers(response.data.items);
-        });
-    }
+    const getUsers = () => {
+        if (users.length === 0) {
+            axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
+                setUsers(response.data.items);
+            });
+        }
+    };
 
     return (
         <div className={styles.usersList}>
+            <button onClick={getUsers}>Get Users</button>
             {users.map((user) => {
                 return (
                     <div className={styles.usersItem}>
                         <div>
                             <p>
                                 <img
-                                    src={user.photos.small ? users.photos.small : userIcon}
+                                    src={user.photos.small ? user.photos.small : userIcon}
                                     alt="avatar"
                                     className={styles.usersItemPhoto}
                                 />
