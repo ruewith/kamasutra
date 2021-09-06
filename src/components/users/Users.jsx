@@ -1,21 +1,30 @@
 import React from "react";
-import * as axios from "axios";
 
 import styles from "./Users.module.sass";
 import userIcon from "../../assets/userIcon.png";
 
-const Users = ({ users, follow, unfollow, setUsers }) => {
-    const getUsers = () => {
-        if (users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
-                setUsers(response.data.items);
-            });
-        }
-    };
+const Users = ({ totalCount, pageSize, currentPage, changeCurrentPage, users, follow, unfollow }) => {
+    let pagesCount = Math.ceil(totalCount / pageSize);
+
+    let pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+        pages.push(i);
+    }
 
     return (
         <div className={styles.usersList}>
-            <button onClick={getUsers}>Get Users</button>
+            <div className={styles.usersPagination}>
+                {pages.map((page) => (
+                    <span
+                        className={page === currentPage && styles.selected}
+                        onClick={() => {
+                            changeCurrentPage(page);
+                        }}
+                    >
+                        {page}
+                    </span>
+                ))}
+            </div>
             {users.map((user) => {
                 return (
                     <div className={styles.usersItem}>
