@@ -2,9 +2,12 @@ import React from "react";
 
 import styles from "./Users.module.sass";
 import userIcon from "../../assets/userIcon.png";
+import { NavLink } from "react-router-dom";
 
-const Users = ({ totalCount, pageSize, currentPage, changeCurrentPage, users, follow, unfollow }) => {
-    let pagesCount = Math.ceil(totalCount / pageSize);
+const Users = (props) => {
+    const { totalCount, pageSize, currentPage, changeCurrentPage, users, follow, unfollow } = props;
+
+    const pagesCount = Math.ceil(totalCount / pageSize);
 
     let pages = [];
     for (let i = 1; i <= pagesCount; i++) {
@@ -30,11 +33,13 @@ const Users = ({ totalCount, pageSize, currentPage, changeCurrentPage, users, fo
                     <div className={styles.usersItem}>
                         <div>
                             <p>
-                                <img
-                                    src={user.photos.small ? user.photos.small : userIcon}
-                                    alt="avatar"
-                                    className={styles.usersItemPhoto}
-                                />
+                                <NavLink to={`/profile/${user.id}`}>
+                                    <img
+                                        src={user.photos.small ? user.photos.small : userIcon}
+                                        alt="avatar"
+                                        className={styles.usersItemPhoto}
+                                    />
+                                </NavLink>
                             </p>
                             <p>
                                 {user.followed ? (

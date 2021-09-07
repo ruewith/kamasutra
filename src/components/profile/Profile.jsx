@@ -5,10 +5,11 @@ import styles from "./Profile.module.sass";
 import ProfileInfo from "../profile-info";
 import Posts, { PostsContainer } from "../posts";
 
-const Profile = ({ store }) => {
+const Profile = (props) => {
+    const { store, profile } = props;
     return (
         <div>
-            <ProfileInfo />
+            <ProfileInfo profile={profile} />
             <PostsContainer store={store} />
         </div>
     );
