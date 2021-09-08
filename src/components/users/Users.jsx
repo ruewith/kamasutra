@@ -6,7 +6,17 @@ import { NavLink } from "react-router-dom";
 import axios from "axios";
 
 const Users = (props) => {
-    const { totalCount, pageSize, currentPage, changeCurrentPage, users, follow, unfollow } = props;
+    const {
+        totalCount,
+        pageSize,
+        currentPage,
+        changeCurrentPage,
+        users,
+        follow,
+        unfollow,
+        followingInProgress,
+        setFollowingProgress,
+    } = props;
 
     const pagesCount = Math.ceil(totalCount / pageSize);
 
@@ -45,7 +55,10 @@ const Users = (props) => {
                             <p>
                                 {user.followed ? (
                                     <button
+                                        disabled={followingInProgress.some((id) => id === user.id)}
                                         onClick={() => {
+                                            debugger;
+                                            setFollowingProgress(true, user.id);
                                             axios
                                                 .delete(
                                                     `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -60,6 +73,7 @@ const Users = (props) => {
                                                     if (response.data.resultCode === 0) {
                                                         unfollow(user.id);
                                                     }
+                                                    setFollowingProgress(false, user.id);
                                                 });
                                         }}
                                     >
@@ -67,7 +81,10 @@ const Users = (props) => {
                                     </button>
                                 ) : (
                                     <button
+                                        disabled={followingInProgress.some((id) => id === user.id)}
                                         onClick={() => {
+                                            debugger;
+                                            setFollowingProgress(true, user.id);
                                             axios
                                                 .post(
                                                     `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
@@ -83,6 +100,7 @@ const Users = (props) => {
                                                     if (response.data.resultCode === 0) {
                                                         follow(user.id);
                                                     }
+                                                    setFollowingProgress(false, user.id);
                                                 });
                                         }}
                                     >
