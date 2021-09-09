@@ -1,6 +1,7 @@
 import React from "react";
 
 import styles from "./ProfileInfo.module.sass";
+import userIcon from "../../assets/userIcon.png";
 
 import Preloader from "../preloader";
 
@@ -16,7 +17,7 @@ const ProfileInfo = ({ profile }) => {
             </div>
             <div className={styles.profileDescription}>
                 <p>
-                    <img src={profile.photos.large} alt="profile avatar" />
+                    <img className={styles.profileAvatar} src={profile.photos.large || userIcon} alt="profile avatar" />
                 </p>
                 <p>{profile.aboutMe}</p>
             </div>

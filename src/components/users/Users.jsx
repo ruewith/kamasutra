@@ -1,22 +1,12 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 import styles from "./Users.module.sass";
 import userIcon from "../../assets/userIcon.png";
-import { NavLink } from "react-router-dom";
-import axios from "axios";
 
 const Users = (props) => {
-    const {
-        totalCount,
-        pageSize,
-        currentPage,
-        changeCurrentPage,
-        users,
-        follow,
-        unfollow,
-        followingInProgress,
-        setFollowingProgress,
-    } = props;
+    const { totalCount, pageSize, currentPage, changeCurrentPage, users, follow, unfollow, followingInProgress } =
+        props;
 
     const pagesCount = Math.ceil(totalCount / pageSize);
 
@@ -56,53 +46,14 @@ const Users = (props) => {
                                 {user.followed ? (
                                     <button
                                         disabled={followingInProgress.some((id) => id === user.id)}
-                                        onClick={() => {
-                                            debugger;
-                                            setFollowingProgress(true, user.id);
-                                            axios
-                                                .delete(
-                                                    `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                                    {
-                                                        withCredentials: true,
-                                                        headers: {
-                                                            "API-KEY": "77b31272-2094-486b-b7d2-b66ff9739961",
-                                                        },
-                                                    }
-                                                )
-                                                .then((response) => {
-                                                    if (response.data.resultCode === 0) {
-                                                        unfollow(user.id);
-                                                    }
-                                                    setFollowingProgress(false, user.id);
-                                                });
-                                        }}
+                                        onClick={() => unfollow(user.id)}
                                     >
                                         unfollow
                                     </button>
                                 ) : (
                                     <button
                                         disabled={followingInProgress.some((id) => id === user.id)}
-                                        onClick={() => {
-                                            debugger;
-                                            setFollowingProgress(true, user.id);
-                                            axios
-                                                .post(
-                                                    `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
-                                                    {},
-                                                    {
-                                                        withCredentials: true,
-                                                        headers: {
-                                                            "API-KEY": "77b31272-2094-486b-b7d2-b66ff9739961",
-                                                        },
-                                                    }
-                                                )
-                                                .then((response) => {
-                                                    if (response.data.resultCode === 0) {
-                                                        follow(user.id);
-                                                    }
-                                                    setFollowingProgress(false, user.id);
-                                                });
-                                        }}
+                                        onClick={() => follow(user.id)}
                                     >
                                         follow
                                     </button>
