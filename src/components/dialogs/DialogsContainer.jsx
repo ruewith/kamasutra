@@ -5,6 +5,7 @@ import { sendMessageAC, updateMessageTextAC } from "../../reducers/dialogs-reduc
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 import Dialogs from "./Dialogs";
+import { compose } from "redux";
 
 let mapStateToProps = (state) => {
     return {
@@ -22,6 +23,4 @@ let mapDispatchToProps = (dispatch) => {
     };
 };
 
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(withAuthRedirect(Dialogs));
-
-export default DialogsContainer;
+export default compose(connect(mapStateToProps, mapDispatchToProps), withAuthRedirect)(Dialogs);
