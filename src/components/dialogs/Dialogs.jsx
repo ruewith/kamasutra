@@ -4,8 +4,9 @@ import styles from "./Dialogs.module.sass";
 
 import MessageItem from "../message-item";
 import DialogItem from "../dialog-item";
+import { Redirect } from "react-router";
 
-const Dialogs = ({ dialogsPage, updateMessageText, sendMessage }) => {
+const Dialogs = ({ dialogsPage, updateMessageText, sendMessage, isAuth }) => {
     const { dialogs, messages, messageText } = dialogsPage;
     let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
     let messageElements = messages.map(({ message }) => <MessageItem message={message} />);

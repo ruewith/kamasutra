@@ -3,8 +3,9 @@ import { Switch, Route } from "react-router-dom";
 
 import styles from "./App.module.sass";
 
-import { HeaderContainer } from "../header";
 import Navbar from "../navbar";
+import Login from "../login";
+import { HeaderContainer } from "../header";
 import { ProfileContainer } from "../profile";
 import { DialogsContainer } from "../dialogs";
 import { UsersContainer } from "../users";
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                     <Route path="/dialogs" render={() => <DialogsContainer />} />
                     <Route path="/users" render={() => <UsersContainer />} />
+                    <Route path="/login" render={() => <Login />} />
                 </Switch>
             </div>
         </div>
