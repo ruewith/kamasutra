@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Profile.module.sass";
 
-import ProfileInfo from "../profile-info";
+import ProfileInfo from "./ProfileInfo";
 import Posts, { PostsContainer } from "../posts";
 
 const Profile = (props) => {

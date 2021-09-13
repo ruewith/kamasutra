@@ -1,9 +1,10 @@
 import React from "react";
 
-import styles from "./ProfileInfo.module.sass";
+import styles from "./Profile.module.sass";
 import userIcon from "../../assets/userIcon.png";
 
 import Preloader from "../preloader";
+import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({ profile }) => {
     if (!profile) {
@@ -12,13 +13,11 @@ const ProfileInfo = ({ profile }) => {
 
     return (
         <div>
-            <div>
-                <img src="https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb" />
-            </div>
             <div className={styles.profileDescription}>
                 <p>
                     <img className={styles.profileAvatar} src={profile.photos.large || userIcon} alt="profile avatar" />
                 </p>
+                <ProfileStatus status="test" />
                 <p>{profile.aboutMe}</p>
             </div>
         </div>
