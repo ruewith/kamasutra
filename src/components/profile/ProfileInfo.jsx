@@ -6,7 +6,7 @@ import userIcon from "../../assets/userIcon.png";
 import Preloader from "../preloader";
 import ProfileStatus from "./ProfileStatus";
 
-const ProfileInfo = ({ profile }) => {
+const ProfileInfo = ({ profile, status, updateStatus }) => {
     if (!profile) {
         return <Preloader />;
     }
@@ -17,8 +17,7 @@ const ProfileInfo = ({ profile }) => {
                 <p>
                     <img className={styles.profileAvatar} src={profile.photos.large || userIcon} alt="profile avatar" />
                 </p>
-                <ProfileStatus status="test" />
-                <p>{profile.aboutMe}</p>
+                <ProfileStatus status={status} updateStatus={updateStatus} />
             </div>
         </div>
     );

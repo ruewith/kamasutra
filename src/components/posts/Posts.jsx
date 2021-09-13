@@ -2,7 +2,7 @@ import React from "react";
 
 import styles from "./Posts.module.sass";
 
-import PostItem from "../post-item";
+import PostItem from "./PostItem";
 
 const Posts = ({ posts, postText, updatePostText, addPost }) => {
     const postElements = posts.map((post) => <PostItem state={post} />);

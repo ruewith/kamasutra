@@ -3,8 +3,7 @@ import React from "react";
 import styles from "./Dialogs.module.sass";
 
 import MessageItem from "../message-item";
-import DialogItem from "../dialog-item";
-import { Redirect } from "react-router";
+import DialogItem from "./DialogItem";
 
 const Dialogs = ({ dialogsPage, updateMessageText, sendMessage, isAuth }) => {
     const { dialogs, messages, messageText } = dialogsPage;

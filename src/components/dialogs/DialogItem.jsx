@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-import styles from "./DialogItem.module.sass";
+import styles from "./Dialogs.module.sass";
 
 const DialogItem = ({ id, name }) => {
     return (

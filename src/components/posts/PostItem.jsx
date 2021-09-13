@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from "./PostItem.module.sass";
+import styles from "./Posts.module.sass";
 import ava from "../../img/pngegg.png";
 
 const PostItem = (props) => {
