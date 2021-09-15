@@ -3,7 +3,7 @@ import React from "react";
 import styles from "./Profile.module.sass";
 import userIcon from "../../assets/userIcon.png";
 
-import Preloader from "../preloader";
+import Preloader from "../common/preloader";
 import ProfileStatus from "./ProfileStatus";
 
 const ProfileInfo = ({ profile, status, updateStatus }) => {

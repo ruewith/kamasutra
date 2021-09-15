@@ -4,6 +4,10 @@ import { reduxForm, Field } from "redux-form";
 import styles from "./Posts.module.sass";
 
 import PostItem from "./PostItem";
+import { Textarea } from "../common/form-controls";
+import { maxLengthValidator, requiredFieldValidator } from "../../utils/validators";
+
+const maxLength20 = maxLengthValidator(20);
 
 const Posts = ({ posts, addPost }) => {
     const postElements = posts.map((post) => <PostItem state={post} />);
@@ -25,7 +29,12 @@ const PostForm = (props) => {
     return (
         <form onSubmit={props.handleSubmit} className={styles.postForm}>
             <div>
-                <Field component={"textarea"} name={"postText"} placeholder="Send post" />
+                <Field
+                    component={Textarea}
+                    name={"postText"}
+                    placeholder="Send post"
+                    validate={[requiredFieldValidator, maxLength20]}
+                />
             </div>
             <div>
                 <button>Add Post</button>

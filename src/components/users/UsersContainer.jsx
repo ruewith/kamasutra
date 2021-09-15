@@ -1,12 +1,12 @@
 import React, { Component } from "react";
+import { compose } from "redux";
 
 import { connect } from "react-redux";
 import { follow, unfollow, setCurrentPage, toggleFollowingProgress, getUsers } from "../../reducers/users-reducer";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
-import Preloader from "../preloader";
+import Preloader from "../common/preloader";
 import Users from "./Users";
-import { compose } from "redux";
 
 class UsersContainer extends Component {
     componentDidMount() {
