@@ -1,14 +1,19 @@
 import React from "react";
+import { reduxForm, Field } from "redux-form";
 
 import styles from "./Dialogs.module.sass";
 
-import MessageItem from "../message-item";
+import MessageItem from "./MessageItem";
 import DialogItem from "./DialogItem";
 
-const Dialogs = ({ dialogsPage, updateMessageText, sendMessage, isAuth }) => {
-    const { dialogs, messages, messageText } = dialogsPage;
+const Dialogs = ({ dialogsPage, sendMessage }) => {
+    const { dialogs, messages } = dialogsPage;
     let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
     let messageElements = messages.map(({ message }) => <MessageItem message={message} />);
+
+    const sendNewMessage = (values) => {
+        sendMessage(values.messageText);
+    };
 
     return (
         <div>
@@ -16,20 +21,26 @@ const Dialogs = ({ dialogsPage, updateMessageText, sendMessage, isAuth }) => {
                 <div className={styles.dialogBlock}>{dialogElements}</div>
                 <div className={styles.messageBlock}>{messageElements}</div>
             </div>
-            <div className={styles.messageForm}>
-                <div>
-                    <textarea
-                        placeholder="Send message"
-                        onChange={(event) => updateMessageText(event.target.value)}
-                        value={messageText}
-                    />
-                </div>
-                <div>
-                    <button onClick={sendMessage}>Send Message</button>
-                </div>
-            </div>
+            <MessageRxForm onSubmit={sendNewMessage} />
         </div>
     );
 };
+
+const MessageForm = (props) => {
+    return (
+        <form onSubmit={props.handleSubmit} className={styles.messageForm}>
+            <div>
+                <Field component={"textarea"} name={"messageText"} placeholder="Send message" />
+            </div>
+            <div>
+                <button>Send Message</button>
+            </div>
+        </form>
+    );
+};
+
+const MessageRxForm = reduxForm({
+    form: "message",
+})(MessageForm);
 
 export default Dialogs;
