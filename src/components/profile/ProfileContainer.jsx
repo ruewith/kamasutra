@@ -10,8 +10,12 @@ import Profile from "./Profile";
 
 class ProfileContainer extends Component {
     componentDidMount() {
-        const { match, getUserProfile, getStatus } = this.props;
-        const userId = match.params.userId || 12749;
+        const { match, getUserProfile, getStatus, isAuth, authId } = this.props;
+        let userId = match.params.userId;
+
+        if (!userId) {
+            userId = authId;
+        }
 
         getUserProfile(userId);
         getStatus(userId);
@@ -32,10 +36,15 @@ class ProfileContainer extends Component {
     }
 }
 
-const mapStateToProps = (state) => ({ profile: state.profilePage.profile, status: state.profilePage.status });
+const mapStateToProps = (state) => ({
+    profile: state.profilePage.profile,
+    status: state.profilePage.status,
+    authId: state.auth.userId,
+    isAuth: state.auth.isAuth,
+});
 
 export default compose(
     connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
-    withRouter,
-    withAuthRedirect
+    withRouter
+    // withAuthRedirect
 )(ProfileContainer);
