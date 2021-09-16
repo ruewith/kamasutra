@@ -2,10 +2,9 @@ import React from "react";
 
 import styles from "./Header.module.sass";
 import img from "../../img/logo.png";
-import { Link } from "react-router-dom";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
-const Header = ({ isAuth, login }) => {
+const Header = ({ isAuth, login, logout }) => {
     return (
         <header className={styles.header}>
             <div className={styles.headerLogo}>
@@ -14,7 +13,13 @@ const Header = ({ isAuth, login }) => {
                 </Link>
             </div>
             <div className={styles.headerLogin}>
-                {isAuth ? <NavLink to={"/"}>{login}</NavLink> : <NavLink to={"/login"}>Login</NavLink>}
+                {isAuth ? (
+                    <span>
+                        {login} - <button onClick={logout}>logout</button>
+                    </span>
+                ) : (
+                    <NavLink to={"/login"}>Login</NavLink>
+                )}
             </div>
         </header>
     );
