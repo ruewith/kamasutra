@@ -7,18 +7,21 @@ import { getUserProfile, getStatus, updateStatus } from "../../reducers/profile-
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 import Profile from "./Profile";
-
 class ProfileContainer extends Component {
     componentDidMount() {
-        const { match, getUserProfile, getStatus, isAuth, authId } = this.props;
+        const { match, getUserProfile, getStatus, authId } = this.props;
         let userId = match.params.userId;
 
         if (!userId) {
             userId = authId;
+            if (!userId) {
+                this.props.history.push("/login");
+            }
         }
 
         getUserProfile(userId);
         getStatus(userId);
+        debugger;
     }
 
     componentDidUpdate(prevProps) {
@@ -39,12 +42,12 @@ class ProfileContainer extends Component {
 const mapStateToProps = (state) => ({
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    authId: state.auth.userId,
+    authId: state.auth.id,
     isAuth: state.auth.isAuth,
 });
 
 export default compose(
     connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
-    withRouter
-    // withAuthRedirect
+    withRouter,
+    withAuthRedirect
 )(ProfileContainer);

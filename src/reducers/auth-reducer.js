@@ -3,7 +3,7 @@ import { authAPI } from "../api/api";
 
 const SET_AUTH_DATA = "SET_AUTH_DATA";
 
-let initialState = {
+const initialState = {
     id: null,
     email: null,
     login: null,
@@ -29,7 +29,7 @@ export const setAuthData = (id, email, login, isAuth) => ({
 });
 
 export const getAuthUser = () => (dispatch) => {
-    authAPI.me().then((data) => {
+    return authAPI.me().then((data) => {
         if (data.resultCode === 0) {
             const { id, login, email } = data.data;
             dispatch(setAuthData(id, email, login, true));
