@@ -4,7 +4,7 @@ import styles from "./Profile.module.sass";
 import userIcon from "../../assets/userIcon.png";
 
 import Preloader from "../common/preloader";
-import ProfileStatus from "./ProfileStatus";
+import ProfileStatus from "./ProfileStatusHooks";
 
 const ProfileInfo = ({ profile, status, updateStatus }) => {
     if (!profile) {
