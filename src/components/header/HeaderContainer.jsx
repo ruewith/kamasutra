@@ -5,8 +5,6 @@ import { logout } from "../../reducers/auth-reducer";
 
 class HeaderContainer extends Component {
     render() {
-        debugger;
-
         return <Header {...this.props} />;
     }
 }

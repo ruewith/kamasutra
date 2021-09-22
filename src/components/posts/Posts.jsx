@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PureComponent } from "react";
 import { reduxForm, Field } from "redux-form";
 
 import styles from "./Posts.module.sass";
@@ -9,21 +9,27 @@ import { maxLengthValidator, requiredFieldValidator } from "../../utils/validato
 
 const maxLength20 = maxLengthValidator(20);
 
-const Posts = ({ posts, addPost }) => {
-    const postElements = posts.map((post) => <PostItem state={post} />);
+class Posts extends PureComponent {
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     return nextProps != this.props || nextState != this.state;
+    // }
 
-    const addNewPost = (values) => {
-        addPost(values.postText);
+    addNewPost = (values) => {
+        this.props.addPost(values.postText);
     };
+    render() {
+        console.log("Render");
+        const postElements = this.props.posts.map((post) => <PostItem state={post} />);
 
-    return (
-        <div className={styles.posts}>
-            <h3>My posts</h3>
-            <PostRxForm onSubmit={addNewPost} />
-            <div className={styles.postBlock}>{postElements}</div>
-        </div>
-    );
-};
+        return (
+            <div className={styles.posts}>
+                <h3>My posts</h3>
+                <PostRxForm onSubmit={this.addNewPost} />
+                <div className={styles.postBlock}>{postElements}</div>
+            </div>
+        );
+    }
+}
 
 const PostForm = (props) => {
     return (

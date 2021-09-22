@@ -21,7 +21,6 @@ class ProfileContainer extends Component {
 
         getUserProfile(userId);
         getStatus(userId);
-        debugger;
     }
 
     componentDidUpdate(prevProps) {
