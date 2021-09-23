@@ -1,3 +1,3 @@
-import { Textarea, Input } from "./FormControls";
+import { Textarea, Input, createField } from "./FormControls";
 
-export { Textarea, Input };
+export { Textarea, Input, createField };

@@ -5,7 +5,7 @@ import { reduxForm, Field } from "redux-form";
 
 import styles from "./Login.module.sass";
 
-import { Input } from "../common/form-controls";
+import { Input, createField } from "../common/form-controls";
 import { login } from "../../reducers/auth-reducer";
 import { maxLengthValidator, requiredFieldValidator } from "../../utils/validators";
 
@@ -31,26 +31,9 @@ const Login = (props) => {
 const LoginForm = (props) => {
     return (
         <form className={styles.loginForm} onSubmit={props.handleSubmit}>
-            <div>
-                <Field
-                    placeholder={"E-mail"}
-                    name={"email"}
-                    component={Input}
-                    validate={[requiredFieldValidator, maxLength20]}
-                />
-            </div>
-            <div>
-                <Field
-                    placeholder={"Password"}
-                    name={"password"}
-                    type={"password"}
-                    component={Input}
-                    validate={[requiredFieldValidator, maxLength20]}
-                />
-            </div>
-            <div>
-                <Field component={"input"} name={"rememberMe"} type={"checkbox"} /> remember me
-            </div>
+            {createField("Email", "email", [requiredFieldValidator], Input)}
+            {createField("Password", "password", [requiredFieldValidator], Input, { type: "password" })}
+            {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "remember me")}
             {props.error && <div className={styles.summaryError}>{props.error}</div>}
             <div>
                 <button>Login</button>
