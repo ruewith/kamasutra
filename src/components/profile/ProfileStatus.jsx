@@ -1,6 +1,6 @@
 import React from "react";
-import styles from "./Profile.module.sass";
 
+import styles from "./Profile.module.sass";
 class ProfileStatus extends React.Component {
     state = {
         editMode: false,
