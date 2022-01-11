@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { compose } from "redux";
 
 import { connect } from "react-redux";
-import { follow, unfollow, setCurrentPage, toggleFollowingProgress, requestUsers } from "../../reducers/users-reducer";
+import { follow, unfollow, setCurrentPage, requestUsers } from "../../reducers/users-reducer";
 import {
     getUsers,
     getPageSize,
@@ -23,39 +23,26 @@ class UsersContainer extends Component {
     }
 
     changeCurrentPage = (page) => {
-        this.props.setCurrentPage(page);
         this.props.requestUsers(page, this.props.pageSize);
     };
 
     render() {
-        const {
-            isFetching,
-            totalCount,
-            pageSize,
-            currentPage,
-            users,
-            follow,
-            unfollow,
-            followingInProgress,
-            toggleFollowingProgress,
-        } = this.props;
+        const { isFetching, totalCount, pageSize, currentPage, users, follow, unfollow, followingInProgress } =
+            this.props;
 
         return (
             <>
-                {isFetching ? (
-                    <Preloader />
-                ) : (
-                    <Users
-                        totalCount={totalCount}
-                        pageSize={pageSize}
-                        currentPage={currentPage}
-                        changeCurrentPage={this.changeCurrentPage}
-                        users={users}
-                        follow={follow}
-                        unfollow={unfollow}
-                        followingInProgress={followingInProgress}
-                    />
-                )}
+                {isFetching ? <Preloader /> : null}
+                <Users
+                    totalCount={totalCount}
+                    pageSize={pageSize}
+                    currentPage={currentPage}
+                    changeCurrentPage={this.changeCurrentPage}
+                    users={users}
+                    follow={follow}
+                    unfollow={unfollow}
+                    followingInProgress={followingInProgress}
+                />
             </>
         );
     }
@@ -77,7 +64,7 @@ export default compose(
         follow,
         unfollow,
         setCurrentPage,
-        toggleFollowingProgress,
+
         requestUsers,
     }),
     withAuthRedirect

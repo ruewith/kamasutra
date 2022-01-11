@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Header.module.sass";
-import img from "../../img/logo.png";
+import img from "../../img/logo2.png";
 import { Link, NavLink } from "react-router-dom";
 
 const Header = ({ isAuth, login, logout }) => {
@@ -14,9 +14,10 @@ const Header = ({ isAuth, login, logout }) => {
             </div>
             <div className={styles.headerLogin}>
                 {isAuth ? (
-                    <span>
-                        {login} - <button onClick={logout}>logout</button>
-                    </span>
+                    <>
+                        <NavLink to={"/profile"}>{login} -</NavLink>
+                        <button onClick={logout}>logout</button>
+                    </>
                 ) : (
                     <NavLink to={"/login"}>Login</NavLink>
                 )}

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import styles from "./Profile.module.sass";
 
 const ProfileStatus = (props) => {
     const [editMode, setEditMode] = useState(false);
