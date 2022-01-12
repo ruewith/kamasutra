@@ -15,6 +15,7 @@ import withAuthRedirect from "../../hoc/withAuthRedirect";
 
 import Preloader from "../common/preloader";
 import Users from "./Users";
+import Pagination from "../common/pagination";
 
 class UsersContainer extends Component {
     componentDidMount() {
@@ -32,17 +33,22 @@ class UsersContainer extends Component {
 
         return (
             <>
-                {isFetching ? <Preloader /> : null}
-                <Users
+                <Pagination
                     totalCount={totalCount}
                     pageSize={pageSize}
                     currentPage={currentPage}
                     changeCurrentPage={this.changeCurrentPage}
-                    users={users}
-                    follow={follow}
-                    unfollow={unfollow}
-                    followingInProgress={followingInProgress}
                 />
+                {isFetching ? (
+                    <Preloader />
+                ) : (
+                    <Users
+                        users={users}
+                        follow={follow}
+                        unfollow={unfollow}
+                        followingInProgress={followingInProgress}
+                    />
+                )}
             </>
         );
     }
@@ -64,7 +70,6 @@ export default compose(
         follow,
         unfollow,
         setCurrentPage,
-
         requestUsers,
     }),
     withAuthRedirect
