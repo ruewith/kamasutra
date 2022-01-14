@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Profile.module.sass";
-import userIcon from "../../assets/userIcon.png";
+import userIcon from "../../assets/img/userIcon.png";
 
 import Preloader from "../common/preloader";
 import ProfileStatus from "./ProfileStatusHooks";

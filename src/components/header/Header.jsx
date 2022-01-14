@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Header.module.sass";
-import img from "../../img/logo2.png";
+import img from "../../assets/img/logo2.png";
 import { Link, NavLink } from "react-router-dom";
 
 const Header = ({ isAuth, login, logout }) => {

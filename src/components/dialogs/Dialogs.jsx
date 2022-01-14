@@ -12,11 +12,12 @@ const maxLength50 = maxLengthValidator(50);
 
 const Dialogs = ({ dialogsPage, sendMessage }) => {
     const { dialogs, messages } = dialogsPage;
-    let dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
-    let messageElements = messages.map(({ message }) => <MessageItem message={message} />);
+    const dialogElements = dialogs.map(({ id, name }) => <DialogItem id={id} name={name} />);
+    const messageElements = messages.map(({ message }) => <MessageItem message={message} />);
 
     const sendNewMessage = (values) => {
         sendMessage(values.messageText);
+        values.messageText = "";
     };
 
     return (

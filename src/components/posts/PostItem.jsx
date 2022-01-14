@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Posts.module.sass";
-import ava from "../../img/pngegg.png";
+import ava from "../../assets/img/pngegg.png";
 
 const PostItem = (props) => {
     const { text, likesCount } = props.state;

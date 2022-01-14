@@ -1,7 +1,7 @@
 import React from "react";
 
 import styles from "./Preloader.module.sass";
-import infinity from "../../../assets/infinity.svg";
+import infinity from "../../../assets/img/infinity.svg";
 
 const Preloader = () => {
     return (

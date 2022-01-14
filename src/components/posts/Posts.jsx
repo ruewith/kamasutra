@@ -16,6 +16,7 @@ class Posts extends PureComponent {
 
     addNewPost = (values) => {
         this.props.addPost(values.postText);
+        values.postText = "";
     };
     render() {
         console.log("Render");
