@@ -9,7 +9,7 @@ const instance = axios.create({
 });
 
 export const usersAPI = {
-    getUsers(currentPage = 1, pageSize = 10) {
+    getUsers: async (currentPage = 1, pageSize = 10) => {
         return instance.get(`users?page=${currentPage}&count=${pageSize}`).then((response) => response.data);
     },
     follow(userId) {
@@ -28,7 +28,7 @@ export const profileAPI = {
         return instance.get(`profile/status/${userId}`).then((response) => response.data);
     },
     updateStatus(status) {
-        return instance.put(`profile/status`, { status: status }).then((response) => response.data);
+        return instance.put(`profile/status`, { status }).then((response) => response.data);
     },
 };
 

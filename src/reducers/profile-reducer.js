@@ -7,9 +7,9 @@ const DELETE_POST = "DELETE_POST";
 
 const initialState = {
     posts: [
-        { id: 1, text: "First post", likesCount: 12 },
-        { id: 2, text: "Second post", likesCount: 11 },
-        { id: 3, text: "Third post", likesCount: 11 },
+        // { id: 1, text: "First post", likesCount: 12 },
+        // { id: 2, text: "Second post", likesCount: 11 },
+        // { id: 3, text: "Third post", likesCount: 11 },
     ],
     profile: null,
     status: "",
