@@ -40,7 +40,7 @@ const PostForm = (props) => {
                     component={Textarea}
                     name={"postText"}
                     placeholder="Send post"
-                    validate={[requiredFieldValidator, maxLength20]}
+                    //validate={[requiredFieldValidator, maxLength20]}
                 />
             </div>
             <div>

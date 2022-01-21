@@ -9,12 +9,12 @@ import { Input, createField } from "../common/form-controls";
 import { login } from "../../reducers/auth-reducer";
 import { requiredFieldValidator } from "../../utils/validators";
 
-const Login = (props) => {
+const Login = ({ login, isAuth }) => {
     const onFormSubmit = (formData) => {
-        props.login(formData.email, formData.password, formData.rememberMe);
+        login(formData.email, formData.password, formData.rememberMe);
     };
 
-    if (props.isAuth) {
+    if (isAuth) {
         return <Redirect to={"/profile"} />;
     }
 
@@ -26,13 +26,13 @@ const Login = (props) => {
     );
 };
 
-const LoginForm = (props) => {
+const LoginForm = ({ handleSubmit, error }) => {
     return (
-        <form className={styles.loginForm} onSubmit={props.handleSubmit}>
+        <form className={styles.loginForm} onSubmit={handleSubmit}>
             {createField("Email", "email", [requiredFieldValidator], Input)}
             {createField("Password", "password", [requiredFieldValidator], Input, { type: "password" })}
             {createField(null, "rememberMe", [], Input, { type: "checkbox" }, "remember me")}
-            {props.error && <div className={styles.summaryError}>{props.error}</div>}
+            {error && <div className={styles.summaryError}>{error}</div>}
             <div>
                 <button>Login</button>
             </div>

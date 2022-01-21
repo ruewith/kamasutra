@@ -7,9 +7,9 @@ const DELETE_POST = "DELETE_POST";
 
 const initialState = {
     posts: [
-        // { id: 1, text: "First post", likesCount: 12 },
-        // { id: 2, text: "Second post", likesCount: 11 },
-        // { id: 3, text: "Third post", likesCount: 11 },
+        { id: 1, text: "First post", likesCount: 12 },
+        { id: 2, text: "Second post", likesCount: 11 },
+        { id: 3, text: "Third post", likesCount: 11 },
     ],
     profile: null,
     status: "",
@@ -49,18 +49,19 @@ export const setStatus = (status) => ({ type: SET_STATUS, status });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 export const getUserProfile = (userId) => async (dispatch) => {
-    const data = await profileAPI.getProfile(userId);
-    dispatch(setUserProfile(data));
+    const response = await profileAPI.getProfile(userId);
+    dispatch(setUserProfile(response.data));
 };
 
 export const getStatus = (userId) => async (dispatch) => {
-    const data = await profileAPI.getStatus(userId);
-    dispatch(setStatus(data));
+    const response = await profileAPI.getStatus(userId);
+    dispatch(setStatus(response.data));
 };
 
 export const updateStatus = (status) => async (dispatch) => {
-    const data = await profileAPI.updateStatus(status);
-    if (data.resultCode === 0) {
+    const response = await profileAPI.updateStatus(status);
+    console.log(response);
+    if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
     }
 };

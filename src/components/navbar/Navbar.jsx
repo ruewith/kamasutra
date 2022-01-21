@@ -22,21 +22,6 @@ const Navbar = () => {
                         Users
                     </NavLink>
                 </li>
-                <li>
-                    <NavLink to="/news" activeClassName={styles.active}>
-                        News
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/music" activeClassName={styles.active}>
-                        Music
-                    </NavLink>
-                </li>
-                <li>
-                    <NavLink to="/settings" activeClassName={styles.active}>
-                        Settings
-                    </NavLink>
-                </li>
             </ul>
         </nav>
     );
