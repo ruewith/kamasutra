@@ -27,7 +27,7 @@ class ProfileStatus extends Component {
 
     render() {
         return (
-            <div>
+            <div className={styles.profileStatus}>
                 {!this.state.editMode && (
                     <div>
                         <span onDoubleClick={this.activateEditMode}>{this.props.status || "-------"}</span>

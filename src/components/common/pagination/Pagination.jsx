@@ -12,8 +12,8 @@ const Pagination = ({ totalCount, pageSize, currentPage, changeCurrentPage, port
 
     const portionCount = Math.ceil(pagesCount / portionSize);
     const [portionNumber, setPortionNumber] = useState(1);
-    const leftPortionPageNumber = (portionNumber - 1) * portionSize + 1;
-    const rightPortionPageNumber = portionNumber * portionSize;
+    const leftForntier = (portionNumber - 1) * portionSize + 1;
+    const rightForntier = portionNumber * portionSize;
 
     return (
         <div className={styles.pagination}>
@@ -28,7 +28,7 @@ const Pagination = ({ totalCount, pageSize, currentPage, changeCurrentPage, port
             )}
 
             {pages
-                .filter((page) => page >= leftPortionPageNumber && page <= rightPortionPageNumber)
+                .filter((page) => page >= leftForntier && page <= rightForntier)
                 .map((page) => {
                     return (
                         <span

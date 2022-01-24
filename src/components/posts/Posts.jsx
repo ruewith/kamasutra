@@ -19,7 +19,6 @@ class Posts extends PureComponent {
         values.postText = "";
     };
     render() {
-        console.log("Render");
         const postElements = this.props.posts.map((post) => <PostItem state={post} />);
 
         return (

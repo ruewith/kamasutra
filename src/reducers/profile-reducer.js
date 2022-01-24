@@ -1,15 +1,16 @@
 import { profileAPI } from "../api/api";
 
-const ADD_POST = "ADD-POST";
+const ADD_POST = "ADD_POST";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
 const SET_STATUS = "SET_STATUS";
+const SAVE_PHOTO_SUCCESS = "SAVE_PHOTO_SUCCESS";
 const DELETE_POST = "DELETE_POST";
 
 const initialState = {
     posts: [
-        { id: 1, text: "First post", likesCount: 12 },
-        { id: 2, text: "Second post", likesCount: 11 },
-        { id: 3, text: "Third post", likesCount: 11 },
+        // { id: 1, text: "First post", likesCount: 12 },
+        // { id: 2, text: "Second post", likesCount: 11 },
+        // { id: 3, text: "Third post", likesCount: 11 },
     ],
     profile: null,
     status: "",
@@ -20,7 +21,7 @@ const profileReducer = (state = initialState, action) => {
         case ADD_POST:
             return {
                 ...state,
-                posts: [...state.posts, { id: 4, text: action.postText, likesCount: 0 }],
+                posts: [...state.posts, { id: 4, text: action.payload, likesCount: 0 }],
             };
         case DELETE_POST:
             return {
@@ -30,22 +31,26 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_PROFILE:
             return {
                 ...state,
-                profile: action.profile,
+                profile: action.payload,
             };
         case SET_STATUS: {
             return {
                 ...state,
-                status: action.status,
+                status: action.payload,
             };
         }
+        case SAVE_PHOTO_SUCCESS:
+            debugger;
+            return { ...state, profile: { ...state.profile, photos: action.payload } };
         default:
             return state;
     }
 };
 
-export const addPost = (postText) => ({ type: ADD_POST, postText });
-export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, profile });
-export const setStatus = (status) => ({ type: SET_STATUS, status });
+export const addPost = (postText) => ({ type: ADD_POST, payload: postText });
+export const setUserProfile = (profile) => ({ type: SET_USER_PROFILE, payload: profile });
+export const setStatus = (status) => ({ type: SET_STATUS, payload: status });
+export const savePhotoSuccess = (photos) => ({ type: SAVE_PHOTO_SUCCESS, payload: photos });
 export const deletePost = (postId) => ({ type: DELETE_POST, postId });
 
 export const getUserProfile = (userId) => async (dispatch) => {
@@ -60,9 +65,16 @@ export const getStatus = (userId) => async (dispatch) => {
 
 export const updateStatus = (status) => async (dispatch) => {
     const response = await profileAPI.updateStatus(status);
-    console.log(response);
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
+    }
+};
+
+export const savePhoto = (file) => async (dispatch) => {
+    const response = await profileAPI.savePhoto(file);
+
+    if (response.data.resultCode === 0) {
+        dispatch(savePhotoSuccess(response.data.data.photos));
     }
 };
 

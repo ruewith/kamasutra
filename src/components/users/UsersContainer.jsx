@@ -13,9 +13,10 @@ import {
 } from "../../selectors/users-selectors";
 import withAuthRedirect from "../../hoc/withAuthRedirect";
 
-import Preloader from "../common/preloader";
+import { Preloader } from "../common";
+import { Pagination } from "../common";
+
 import Users from "./Users";
-import Pagination from "../common/pagination";
 
 class UsersContainer extends Component {
     componentDidMount() {
