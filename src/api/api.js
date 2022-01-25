@@ -36,6 +36,9 @@ export const profileAPI = {
 
         return instance.put(`profile/photo`, formData);
     },
+    editProfile(profile) {
+        return instance.put(`profile`, profile);
+    },
 };
 
 export const authAPI = {

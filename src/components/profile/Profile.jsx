@@ -1,19 +1,40 @@
-import React from "react";
+import React, { useState } from "react";
 
-import ProfileInfo from "./ProfileInfo";
-import { PostsContainer } from "../posts";
+import styles from "./Profile.module.sass";
 
-const Profile = ({ store, profile, status, updateStatus, isOwner, savePhoto }) => {
+import { Preloader } from "../common";
+import ProfileStatus from "./ProfileStatus";
+import ProfileData from "./ProfileData";
+import ProfileTitle from "./ProfileTitle";
+import ProfileAvatar from "./ProfileAvatar";
+import ProfileEditForm from "./ProfileEditForm";
+
+const Profile = ({ profile, status, updateStatus, isOwner, savePhoto, editProfile }) => {
+    const [editMode, setEditMode] = useState(false);
+
+    if (!profile) {
+        return <Preloader />;
+    }
+
+    const editProfileSubmit = (formData) => {
+        editProfile(formData).then(() => {
+            setEditMode(false);
+        });
+    };
+
     return (
-        <div>
-            <ProfileInfo
-                profile={profile}
-                status={status}
-                updateStatus={updateStatus}
-                isOwner={isOwner}
-                savePhoto={savePhoto}
-            />
-            <PostsContainer store={store} />
+        <div className={styles.profile}>
+            <ProfileAvatar photos={profile.photos} savePhoto={savePhoto} isOwner={isOwner} />
+
+            <ProfileTitle fullName={profile.fullName} />
+
+            <ProfileStatus status={status} updateStatus={updateStatus} />
+
+            {editMode ? (
+                <ProfileEditForm initialValues={profile} profile={profile} onSubmit={editProfileSubmit} />
+            ) : (
+                <ProfileData setEditMode={() => setEditMode(true)} profile={profile} isOwner={isOwner} />
+            )}
         </div>
     );
 };

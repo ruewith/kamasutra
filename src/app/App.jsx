@@ -10,7 +10,7 @@ import { initializeApp } from "../reducers/app-reduser";
 import Navbar from "../components/navbar";
 import Login from "../components/login";
 import { HeaderContainer } from "../components/header";
-import { ProfileContainer } from "../components/profile";
+import ProfileContainer from "../components/profile";
 import { DialogsContainer } from "../components/dialogs";
 import { UsersContainer } from "../components/users";
 import Preloader from "../components/common/preloader";
