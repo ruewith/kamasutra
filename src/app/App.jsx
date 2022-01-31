@@ -9,11 +9,12 @@ import styles from "./App.module.sass";
 import { initializeApp } from "../reducers/app-reduser";
 import Navbar from "../components/navbar";
 import Login from "../components/login";
-import { HeaderContainer } from "../components/header";
+import HeaderContainer from "../components/header";
 import ProfileContainer from "../components/profile";
-import { DialogsContainer } from "../components/dialogs";
-import { UsersContainer } from "../components/users";
+import DialogsContainer from "../components/dialogs";
+import UsersContainer from "../components/users";
 import Preloader from "../components/common/preloader";
+import { Redirect } from "react-router-dom";
 
 class App extends Component {
     componentDidMount() {
@@ -29,10 +30,12 @@ class App extends Component {
                 <Navbar />
                 <div className={styles.content}>
                     <Switch>
+                        <Redirect exact from="/" to="/profile" />
                         <Route path="/profile/:userId?" render={() => <ProfileContainer />} />
                         <Route path="/dialogs" render={() => <DialogsContainer />} />
                         <Route path="/users" render={() => <UsersContainer />} />
                         <Route path="/login" render={() => <Login />} />
+                        <Route path="*" render={() => <div>404 NOT FOUND</div>} />
                     </Switch>
                 </div>
             </div>
